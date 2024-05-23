@@ -7,7 +7,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/suite"
 
-	app "github.com/Stride-Labs/ibc-rate-limiting/testing/simapp"
+	app "github.com/cosmos/ibc-apps/modules/rate-limiting/v8/testing/simapp"
 )
 
 var (

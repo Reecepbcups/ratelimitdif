@@ -7,9 +7,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/Stride-Labs/ibc-rate-limiting/ratelimit"
-	ratelimitkeeper "github.com/Stride-Labs/ibc-rate-limiting/ratelimit/keeper"
-	ratelimittypes "github.com/Stride-Labs/ibc-rate-limiting/ratelimit/types"
+	"github.com/cosmos/ibc-apps/modules/rate-limiting/v8"
+	ratelimitkeeper "github.com/cosmos/ibc-apps/modules/rate-limiting/v8/keeper"
+	ratelimittypes "github.com/cosmos/ibc-apps/modules/rate-limiting/v8/types"
 
 	"github.com/gorilla/mux"
 	"github.com/rakyll/statik/fs"
@@ -464,7 +464,7 @@ func NewSimApp(
 	// Create the rate limit keeper
 	app.RatelimitKeeper = *ratelimitkeeper.NewKeeper(
 		appCodec,
-		keys[ratelimittypes.StoreKey],
+		runtime.NewKVStoreService(keys[ratelimittypes.StoreKey]),
 		app.GetSubspace(ratelimittypes.ModuleName),
 		authtypes.NewModuleAddress(govtypes.ModuleName).String(),
 		app.BankKeeper,
